@@ -36,7 +36,6 @@ def matches_per_id(id):
         team_2 = data[id]['side2']['name']
         league = data[id]['competition']['name']
 
-        #print(title,', ', date, ', ', team_1, ', ', team_2, ', ', league)
         msg = [{'title': title, 'date': date, 'team 1':team_1,'team 2':team_2,'league':league}]
         
         return jsonify(msg), 200
