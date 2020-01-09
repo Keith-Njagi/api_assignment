@@ -4,11 +4,13 @@ import requests
 import json
 
 app = Flask(__name__)
-api = Api(app)
+api = Api(app=app, version = "1.0", title = "Soccer API", description = "Fetches matches recent matches from score bat and displays them")
+
+name_space = api.namespace('api', description='Main APIs')
 
 url = "https://www.scorebat.com/video-api/v1/"
 
-@api.route('/api/items')
+@name_space.route('/items')
 class Match(Resource):
     def get(self):
         try:
@@ -33,7 +35,7 @@ class Match(Resource):
             msg = {'Error message': 'Items cannot be found'}
             return msg,403
 
-@api.route('/api/item/<int:id>')
+@name_space.route('/item/<int:id>')
 class MatchById(Resource):
     def get(self, id):
         try:
